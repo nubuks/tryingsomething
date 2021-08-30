@@ -1,13 +1,13 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: nodeapp
+  name: spring-boot
   labels:
-    app: nodeapp
+    app: spring-boot
 spec:
   containers:
-    - name: nodeapp
-      image: yakmandocker/nodeapp:tagVersion
+    - name: spring-boot
+      image: yakmandocker/spring-boot:tagVersion
       ports:
         - containerPort: 3000
   imagePullSecrets:
