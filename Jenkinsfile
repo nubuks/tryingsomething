@@ -26,7 +26,7 @@ stages {
             sh "chmod +x changeTag.sh"
             sh "./changeTag.sh ${DOCKER_TAG}"
             sshagent(['kops-machine']) {
-            sh "scp -o StrictHostKeyChecking=no services.yml node-app-pod.yml ec2-user@54.211.23.16:/home/ec2-user"
+            sh "scp -o StrictHostKeyChecking=no services.yml node-app-pod.yml ubuntu@54.211.23.16:/home/ec2-user"
             script {
                 try {
                     sh "ssh ec2-user@54.211.23.16 kubectl apply -f . -n production"
