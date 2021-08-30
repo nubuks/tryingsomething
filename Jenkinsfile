@@ -12,6 +12,15 @@ stages {
             sh "docker build . -t yakmandocker/spring-boot:${DOCKER_TAG}"
         }
     }
+    stage('Dockerhub push'){
+        steps{
+            script{
+                docker.withRegistry('',registryCredential){
+                sh "docker push yakmandocker/spring-boot:${DOCKER_TAG}"
+            }
+        }
+    }
+}
     stage('Deploy to K8S'){
         steps{
             sh "chmod +x changeTag.sh"
