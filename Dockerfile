@@ -4,6 +4,6 @@ COPY ./src ./src
 RUN mvn dependency:go-offline -B
 RUN mvn package
 WORKDIR /thebest
-COPY --from=maven target/helloworld-0.0.1-SNAPSHOT.jar ./helloworld-0.0.1-SNAPSHOT.jar
+COPY --from=maven target/helloworld-0.0.1-SNAPSHOT.jar ./thebest/helloworld-0.0.1-SNAPSHOT.jar
 CMD ["java", "-jar", "./helloworld-0.0.1-SNAPSHOT.jar"]
 
