@@ -1,5 +1,5 @@
 FROM maven:3.6.0-jdk-11-slim
-RUN mvn -f /root/thebest/pom.xml clean package
+RUN mvn clean package
 COPY /root/thebest /root/thebest
 COPY target/helloworld-0.0.1-SNAPSHOT.jar /target/helloworld-0.0.1-SNAPSHOT.jar
 COPY pom.xml /root/thebest
