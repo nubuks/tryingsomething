@@ -1,17 +1,10 @@
-FROM maven:3.6.0-jdk-11-slim
-WORKDIR /home/ec2-user/thebest
-RUN mvn clean package
-COPY src /home/ec2-user/thebest/src
-COPY target/helloworld-0.0.1-SNAPSHOT.jar /target/helloworld-0.0.1-SNAPSHOT.jar
-COPY pom.xml /home/ec2-user/thebest
-RUN mvn -f /home/ec2-user/thebest/pom.xml clean package
+FROM maven:3.5.4-jdk-8-alpine as maven
+COPY ./pom.xml ./pom.xml
+COPY ./src ./src
+RUN mvn dependency:go-offline -B
+RUN mvn package
+FROM openjdk:8u171-jre-alpine
+WORKDIR /adevguide
+COPY --from=maven target/helloworld-0.0.1-SNAPSHOT.jar ./helloworld-0.0.1-SNAPSHOT.jar
+CMD ["java", "-jar", "./helloworld-0.0.1-SNAPSHOT.jar"]
 
-#
-# Package stage
-#
-FROM openjdk:8-jdk-alpine
-COPY --from=build /home/ec2-user/thebest//target/helloworld-0.0.1-SNAPSHOT.jar /home/ec2-user/thebest//target/helloworld-0.0.1-SNAPSHOT.jar
-EXPOSE 8080
-ARG JAR_FILE=target/helloworld-0.0.1-SNAPSHOT.jar
-ADD ${JAR_FILE} app.jar
-ENTRYPOINT ["java","-jar","/app.jar"]
