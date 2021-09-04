@@ -1,12 +1,12 @@
 kind: Service
 apiVersion: v1
 metadata:
-  name: nodeapp
+  name: spring-boot
 spec:
   selector:
-    app: nodeapp
+    app: spring-boot
   ports:
   - protocol: TCP
     port: 80
-    targetPort: 3000
+    targetPort: 8080
   type: LoadBalancer   
