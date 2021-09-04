@@ -1,4 +1,5 @@
 FROM maven:3.6.0-jdk-11-slim
+WORKDIR /root/thebest
 RUN mvn clean package
 COPY /root/thebest /root/thebest
 COPY target/helloworld-0.0.1-SNAPSHOT.jar /target/helloworld-0.0.1-SNAPSHOT.jar
