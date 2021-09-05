@@ -9,6 +9,6 @@ spec:
     - name: spring-boot
       image: yakmandocker/spring-boot:tagVersion
       ports:
-        - containerPort: 3000
+        - containerPort: 8080
   imagePullSecrets:
     - name: nodesecret
