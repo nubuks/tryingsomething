@@ -2,7 +2,7 @@ pipeline {
     agent any
     environment{
     DOCKER_TAG = getDockerTag()
-    registryCredential = "dockerhub"
+    registryCredential = "docker-hub"
     registry = "yakmandocker/nodeapp"
 }
 
