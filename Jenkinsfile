@@ -3,20 +3,20 @@ pipeline {
     environment{
     DOCKER_TAG = getDockerTag()
     registryCredential = "docker-hub"
-    registry = "yakmandocker/srping-boot"
+    registry = "yakmandocker/spring-boot"
 }
 
 stages {
     stage('Build docker image') {
         steps{
-            sh "docker build . -t yakmandocker/srping-boot:${DOCKER_TAG}"
+            sh "docker build . -t yakmandocker/spring-boot:${DOCKER_TAG}"
         }
     }
     stage('Dockerhub push'){
         steps{
             script{
                 docker.withRegistry('',registryCredential){
-                sh "docker push yakmandocker/srping-boot:${DOCKER_TAG}"
+                sh "docker push yakmandocker/spring-boot:${DOCKER_TAG}"
             }
         }
     }
